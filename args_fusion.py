@@ -4,10 +4,10 @@ class args():
 	# training args
 	epochs = 2 #"number of training epochs, default is 2"
 	batch_size = 4 #"batch size for training, default is 4"
-	dataset_ir = "./data/kaist-rgbt/images"
-	dataset_vi = "./data/kaist-rgbt/images"
+	dataset_ir = "./home/atul/Desktop/Wrightstate/deeplearningpaper/Image-Fusion-Transformer/data/kaist-rgbt"
+	dataset_vi = "./home/atul/Desktop/Wrightstate/deeplearningpaper/Image-Fusion-Transformer/data/kaist-rgbt"
 
-	dataset = 'medical'
+	dataset = 'data'
 	#dataset = 'focus'
 
 	HEIGHT = 256
@@ -23,10 +23,9 @@ class args():
 	lr = 1e-4 #"learning rate, default is 0.001"
 	log_interval = 10 #"number of images after which the training loss is logged, default is 500"
 	resume_fusion_model = None
-	# nest net model
-	resume_nestfuse = './models/nestfuse/nestfuse_gray_1e2.model'
+	resume_nestfuse = './models/model/nestfuse_gray_1e2.model'
 	resume_vit = './imagenet21k+imagenet2012_ViT-L_16.pth'
-	fusion_model = './models/rfn_twostage/'
+	fusion_model = './models/model/'
 
 	mode = "fusion_axial"
 

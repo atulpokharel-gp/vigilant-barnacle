@@ -3,7 +3,9 @@ import random
 import numpy as np
 import torch
 from args_fusion import args
-from scipy.misc import imread, imsave, imresize
+# from scipy.misc import imread, imsave, imresize
+from imageio import imread, imwrite
+from skimage.transform import resize
 import matplotlib as mpl
 import pdb
 import cv2
@@ -91,7 +93,7 @@ def get_image(path, height=256, width=256, flag=False):
         image = imread(path, mode='L')
 
     if height is not None and width is not None:
-        image = imresize(image, [height, width], interp='bicubic')
+        image = resize(image, [height, width], interp='bicubic')
     return image
 
 
@@ -108,7 +110,7 @@ def get_test_image(paths, height=256, width=256, flag=False):
         # get saliency part
         if height is not None and width is not None:
             #image = imresize(image, [height, width], interp='nearest')
-            image = imresize(image, [height, width], interp='bicubic')
+            image = resize(image, [height, width], interp='bicubic')
 
         base_size = 512
         h = image.shape[0]

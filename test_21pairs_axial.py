@@ -6,7 +6,7 @@ from net import NestFuse_light2_nodense, Fusion_network, Fusion_strategy, RFN_de
 import utils
 from args_fusion import args
 import numpy as np
-from vit_model import VisionTransformer
+# from vit_model import VisionTransformer
 
 def load_model(path_auto, path_fusion, fs_type, flag_img):
 	if flag_img is True:
@@ -21,7 +21,7 @@ def load_model(path_auto, path_fusion, fs_type, flag_img):
 	nest_model.load_state_dict(torch.load(path_auto))
 
 	fusion_model = Fusion_network(nb_filter, fs_type)
-	fusion_model.load_state_dict(torch.load("models/train/fusionnet/6.0/fusion_axial/fusion_axial.model"))
+	fusion_model.load_state_dict(torch.load("./models/model/nestfuse_gray_1e2.model"))
 
 	fusion_strategy = Fusion_strategy(fs_type)
 
@@ -48,7 +48,7 @@ def run_demo(nest_model, fusion_model, fusion_strategy, infrared_path, visible_p
 	img_vi, h, w, c = utils.get_test_image(visible_path, flag=flag_img)
 
 	# dim = img_ir.shape
-	if c is 1:
+	if c == 1:
 		if args.cuda:
 			img_ir = img_ir.cuda()
 			img_vi = img_vi.cuda()
@@ -99,9 +99,9 @@ def main():
 	# False - gray
 	flag_img = False
 	# ################# gray scale ########################################
-	test_path = "images/21_pairs_tno/ir/"
+	test_path = "analysis_MatLab/images/ir"
 	path_auto = args.resume_nestfuse
-	output_path_root = "./outputs/alpha_1e4_21/"
+	output_path_root = "./outputs"
 	if os.path.exists(output_path_root) is False:
 		os.mkdir(output_path_root)
 
